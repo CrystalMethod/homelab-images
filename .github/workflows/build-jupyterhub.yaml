@@ -46,8 +46,7 @@ jobs:
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
             type=sha
-            type=semver,pattern={{version}},enable={{is_tag}}
-            type=raw,value={{tag}},enable={{is_tag}}
+            type=match,pattern=jupyterhub-(\d+\.\d+\.\d+),group=1,enable=${{ github.ref_type == 'tag' }}
 
       - name: Build and push
         uses: docker/build-push-action@v6
