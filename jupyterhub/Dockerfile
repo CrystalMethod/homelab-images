@@ -17,7 +17,7 @@
 FROM quay.io/jupyter/scipy-notebook:2026-10-28@sha256:d416eea5c12a44981c2fcb56520649dbd92f7ae5983f4e68e14d1d0ebdf0c2ce
 
 # renovate: datasource=pypi depName=jupyterhub versioning=pep440
-ARG JUPYTERHUB_VERSION=6.1.1
+ARG JUPYTERHUB_VERSION=6.2.0
 # renovate: datasource=github-tags depName=jupyterhub/oauthenticator
 ARG OAUTHENTICATOR_VERSION=17.4.0
 # renovate: datasource=pypi depName=dockerspawner versioning=pep440
