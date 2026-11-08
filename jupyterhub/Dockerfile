@@ -14,7 +14,7 @@
 # ghcr.io/crystalmethod/jupyterhub (see .github/workflows).
 
 # renovate: datasource=docker depName=quay.io/jupyter/scipy-notebook
-FROM quay.io/jupyter/scipy-notebook:2026-10-19@sha256:5d35c495b8544caa2b6bcf6634493e6003004a6b6388019533c6dca32c35658e
+FROM quay.io/jupyter/scipy-notebook:2026-10-28@sha256:d416eea5c12a44981c2fcb56520649dbd92f7ae5983f4e68e14d1d0ebdf0c2ce
 
 # renovate: datasource=pypi depName=jupyterhub versioning=pep440
 ARG JUPYTERHUB_VERSION=6.1.1
