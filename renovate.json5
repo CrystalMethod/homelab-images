@@ -1,0 +1,34 @@
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'config:recommended',
+    // Extracts version-ARGs/ENVs that end in `_VERSION` and are tagged with a
+    // `# renovate:` comment directly above them (see jupyterhub/Dockerfile).
+    'customManagers:dockerfileVersions',
+    // Pin the base image to an exact digest and keep it updated (FROM line).
+    'docker:pinDigests',
+    // Pin pinned GitHub Actions to their commit SHAs for supply-chain hardening.
+    'helpers:pinGitHubActionDigests',
+  ],
+  packageRules: [
+    // Base-image digest bumps are safe builds-by-definition: merge automatically.
+    {
+      matchDatasources: ['docker'],
+      matchUpdateTypes: ['digest'],
+      automerge: true,
+    },
+    // Minor/patch version bumps (Python + GitHub release deps) are low risk.
+    {
+      matchUpdateTypes: ['minor', 'patch'],
+      automerge: true,
+      minimumReleaseAge: '3 days',
+    },
+    // Group the Jupyter base-image updates into a single PR.
+    {
+      matchManagers: ['dockerfile'],
+      groupName: 'Jupyter base image',
+      labels: ['dependencies', 'docker'],
+    },
+  ],
+  schedule: ['after 4am and before 8am on monday and thursday'],
+}
