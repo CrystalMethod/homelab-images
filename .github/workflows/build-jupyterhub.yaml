@@ -24,6 +24,7 @@ jobs:
     permissions:
       contents: read
       packages: write
+      security-events: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -84,13 +85,6 @@ jobs:
           limit-severities-for-sarif: true
         continue-on-error: true
 
-      - name: Upload Trivy SARIF (Security tab)
-        if: github.event_name != 'pull_request'
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: trivy-results.sarif
-          category: container-scanning
-
       - name: Trivy — Build gate (fails on CRITICAL/HIGH, unfixed ignored)
         if: github.event_name != 'pull_request'
         uses: aquasecurity/trivy-action@v0.36.0
@@ -102,3 +96,15 @@ jobs:
           ignore-unfixed: true
           vuln-type: os,library
           skip-setup-trivy: true
+
+      # Reporting runs after the gate: it must never mask or skip the gate.
+      # The SARIF file can be absent when no findings match the severity, so
+      # the upload is best-effort and never blocks the workflow.
+
+      - name: Upload Trivy SARIF (Security tab)
+        if: github.event_name != 'pull_request'
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: trivy-results.sarif
+          category: container-scanning
+        continue-on-error: true
