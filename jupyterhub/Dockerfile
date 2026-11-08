@@ -45,7 +45,7 @@ RUN python -m pip install --no-cache-dir \
     "oauthenticator==${OAUTHENTICATOR_VERSION}" \
     "dockerspawner==${DOCKERSPAWNER_VERSION}" \
     "jupyterlab-git==${JUPYTERLAB_GIT_VERSION}" \
-    "jupyter-ai==${JUPYTER_AI_VERSION}" \
+    "jupyter-ai[jupyternaut]==${JUPYTER_AI_VERSION}" \
     "langchain-openai"
 
 USER jovyan
