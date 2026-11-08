@@ -25,6 +25,11 @@ jobs:
       contents: read
       packages: write
       security-events: write
+    # The image is built arm64-only. Trivy defaults to linux/amd64 and fails
+    # to resolve a platform child from the single-arch index, so pin the scan
+    # to the built platform.
+    env:
+      TRIVY_PLATFORM: linux/arm64
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
