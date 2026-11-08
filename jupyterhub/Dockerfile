@@ -19,9 +19,6 @@ ARG JUPYTERHUB_VERSION=6.1.1
 ARG OAUTHENTICATOR_VERSION=17.4.0
 ARG DOCKERSPAWNER_VERSION=14.0.0
 ARG CONFIGURABLE_HTTP_PROXY_VERSION=5.3.0
-ARG GIT_VERSION=1:2.53.0-1ubuntu1.1
-ARG NODEJS_VERSION=22.22.1+dfsg+~cs22.19.15-1ubuntu1
-ARG NPM_VERSION=9.2.0~ds3-1
 ARG JUPYTERLAB_GIT_VERSION=0.55.0
 ARG JUPYTER_AI_VERSION=3.2.0
 
@@ -29,9 +26,9 @@ USER root
 
 RUN apt-get update \
     && apt-get install --yes --no-install-recommends \
-        "git=${GIT_VERSION}" \
-        "nodejs=${NODEJS_VERSION}" \
-        "npm=${NPM_VERSION}" \
+        git \
+        nodejs \
+        npm \
     && npm install --global "configurable-http-proxy@${CONFIGURABLE_HTTP_PROXY_VERSION}" \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
