@@ -23,7 +23,7 @@ ARG OAUTHENTICATOR_VERSION=17.4.0
 # renovate: datasource=pypi depName=dockerspawner versioning=pep440
 ARG DOCKERSPAWNER_VERSION=14.0.0
 # renovate: datasource=npm depName=configurable-http-proxy
-ARG CONFIGURABLE_HTTP_PROXY_VERSION=5.3.0
+ARG CONFIGURABLE_HTTP_PROXY_VERSION=5.4.0
 # renovate: datasource=pypi depName=jupyterlab-git versioning=pep440
 ARG JUPYTERLAB_GIT_VERSION=0.55.0
 # renovate: datasource=pypi depName=jupyter-ai versioning=pep440
