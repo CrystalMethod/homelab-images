@@ -45,6 +45,12 @@ RUN python -m pip install --no-cache-dir \
     "oauthenticator==${OAUTHENTICATOR_VERSION}" \
     "dockerspawner==${DOCKERSPAWNER_VERSION}" \
     "jupyterlab-git==${JUPYTERLAB_GIT_VERSION}" \
+    # Pin litellm to the newest release compatible with the mcp 1.x required by
+    # jupyter-ai-jupyternaut's langchain-mcp-adapters. Newer litellm (>=1.106.0)
+    # imports mcp-2.x-only symbols (CacheableResult/MCPError), which fails the
+    # Jupyternaut chat with "cannot import name 'CacheableResult' from
+    # 'mcp.types'".
+    "litellm==1.105.0" \
     "jupyter-ai[jupyternaut]==${JUPYTER_AI_VERSION}" \
     "langchain-openai"
 
