@@ -29,6 +29,14 @@
       groupName: 'Jupyter base image',
       labels: ['dependencies', 'docker'],
     },
+    // Later rules win: keep this after the generic Jupyter rule above. New
+    // Stirling-PDF releases need a manual login check, so never auto-merge.
+    {
+      matchManagers: ['dockerfile'],
+      matchFileNames: ['stirling-pdf/Dockerfile'],
+      automerge: false,
+      groupName: 'Stirling-PDF base image',
+    },
   ],
   schedule: ['after 4am and before 8am on monday and thursday'],
 }
